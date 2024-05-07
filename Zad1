@@ -1,0 +1,52 @@
+using System;
+
+class Auto
+{
+    public string Brand { get; set; } = "Unknown";
+    public string Type { get; set; } = "Unknown";
+    public int Doors { get; set; } = 0;
+    public double EngineCapacity { get; set; } = 0.0;
+    public double AverageConsumption { get; set; } = 0.0;
+
+    private static int TotalCars = 0;
+
+    public Auto()
+    {
+        TotalCars++;
+    }
+
+    public Auto(string brand, string type, int doors, double engineCapacity, double avgConsumption)
+        : this()
+    {
+        Brand = brand;
+        Type = type;
+        Doors = doors;
+        EngineCapacity = engineCapacity;
+        AverageConsumption = avgConsumption;
+    }
+
+    private double CalculateFuelUsage(double distance)
+    {
+        return (AverageConsumption * distance) / 100.0;
+    }
+
+    public double CalculateTravelCost(double distance, double fuelPrice)
+    {
+        double fuelUsed = CalculateFuelUsage(distance);
+        return fuelUsed * fuelPrice;
+    }
+
+    public void PrintInfo()
+    {
+        Console.WriteLine("Brand: " + Brand);
+        Console.WriteLine("Type: " + Type);
+        Console.WriteLine("Number of doors: " + Doors);
+        Console.WriteLine("Engine capacity: " + EngineCapacity);
+        Console.WriteLine("Average fuel consumption: " + AverageConsumption);
+    }
+
+    public static void PrintTotalCars()
+    {
+        Console.WriteLine("Total number of cars created: " + TotalCars);
+    }
+}
